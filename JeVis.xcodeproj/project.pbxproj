@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531A2BDB469A00500EEB /* ImagePicker.swift */; };
+		57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */; };
 		57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE12BD78E2200B46280 /* JeVisApp.swift */; };
 		57DDFEE42BD78E2200B46280 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE32BD78E2200B46280 /* ContentView.swift */; };
 		57DDFEE62BD78E2300B46280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DDFEE52BD78E2300B46280 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572F531A2BDB469A00500EEB /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechManager.swift; sourceTree = "<group>"; };
 		57DDFEDE2BD78E2200B46280 /* JeVis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JeVis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DDFEE12BD78E2200B46280 /* JeVisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeVisApp.swift; sourceTree = "<group>"; };
 		57DDFEE32BD78E2200B46280 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57CEE3A12BDA3C0F00D1053F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		57DDFED52BD78E2200B46280 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +63,8 @@
 		57DDFEE02BD78E2200B46280 /* JeVis */ = {
 			isa = PBXGroup;
 			children = (
+				572F531A2BDB469A00500EEB /* ImagePicker.swift */,
+				57CEE3A12BDA3C0F00D1053F /* Managers */,
 				57DDFEE12BD78E2200B46280 /* JeVisApp.swift */,
 				57DDFEE32BD78E2200B46280 /* ContentView.swift */,
 				57DDFEE52BD78E2300B46280 /* Assets.xcassets */,
@@ -137,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */,
+				572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */,
 				57DDFEE42BD78E2200B46280 /* ContentView.swift in Sources */,
 				57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */,
 			);
