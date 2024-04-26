@@ -10,7 +10,9 @@ import SwiftUI
 struct ResultView: View {
     var body: some View {
         VStack {
-        }.padding()
+            AnimationView(name: "progressBar")
+                .frame(width: 600, height: 70)
+        }.padding(.top, 500)
     }
 }
 

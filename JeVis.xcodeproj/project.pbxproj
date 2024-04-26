@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BAD93532BDBB09300F0B3A4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4BAD93522BDBB09300F0B3A4 /* Lottie */; };
 		572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531A2BDB469A00500EEB /* ImagePicker.swift */; };
 		572F531F2BDB482F00500EEB /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531E2BDB482F00500EEB /* HelpView.swift */; };
 		572F53222BDB48A100500EEB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53212BDB48A100500EEB /* ResultView.swift */; };
 		572F53242BDB48B300500EEB /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53232BDB48B300500EEB /* SampleModel.swift */; };
 		572F53262BDB509300500EEB /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53252BDB509300500EEB /* AnimationView.swift */; };
-		572F53292BDB527D00500EEB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 572F53282BDB527D00500EEB /* Lottie */; };
 		57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */; };
 		57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE12BD78E2200B46280 /* JeVisApp.swift */; };
 		57DDFEE42BD78E2200B46280 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE32BD78E2200B46280 /* UploadView.swift */; };
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572F53292BDB527D00500EEB /* Lottie in Frameworks */,
+				4BAD93532BDBB09300F0B3A4 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +137,7 @@
 			);
 			name = JeVis;
 			packageProductDependencies = (
-				572F53282BDB527D00500EEB /* Lottie */,
+				4BAD93522BDBB09300F0B3A4 /* Lottie */,
 			);
 			productName = JeVis;
 			productReference = 57DDFEDE2BD78E2200B46280 /* JeVis.app */;
@@ -427,7 +427,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		572F53282BDB527D00500EEB /* Lottie */ = {
+		4BAD93522BDBB09300F0B3A4 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 572F53272BDB527D00500EEB /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
