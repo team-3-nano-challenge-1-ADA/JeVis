@@ -11,7 +11,7 @@ import Foundation
     var tabIndex = 0
     
     var onboardings: [Onboarding] = [
-        (Onboarding(screenshot: "upload page")),
-        (Onboarding(screenshot: "result"))
+        (Onboarding(screenshot: "upload page", showButton: false)),
+        (Onboarding(screenshot: "result", showButton: true))
     ]
 }

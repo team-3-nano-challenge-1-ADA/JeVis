@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Onboarding: View {
     @State var screenshot: String
+    var showButton: Bool
 
     var body: some View {
         ZStack{
@@ -30,5 +31,5 @@ struct Onboarding: View {
 }
 
 #Preview {
-    Onboarding(screenshot: "upload page")
+    Onboarding(screenshot: "upload page", showButton: false)
 }

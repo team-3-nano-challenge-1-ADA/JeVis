@@ -90,6 +90,7 @@ struct UploadView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func loadImage(){
