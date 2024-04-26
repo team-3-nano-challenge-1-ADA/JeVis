@@ -68,7 +68,7 @@ struct UploadView: View {
                 ImagePicker(image: self.$inputImage)
             }
             if showAnimationView {
-                AnimationController()
+                AnimationView(name: "progressBar")
             }
         }
     }

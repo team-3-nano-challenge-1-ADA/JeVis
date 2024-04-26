@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ResultView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AnimationView(name: "circularBar")
+            .frame(width: 4, height: 4)
     }
 }
 
