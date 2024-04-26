@@ -31,7 +31,7 @@ import Lottie
 //    animationView!.play()
 //}
 
-struct AnimationView: UIViewRepresentable {
+struct AnimationController: UIViewRepresentable {
     typealias UIViewType = UIView
     
     func makeUIView(context: Context) -> UIView {
