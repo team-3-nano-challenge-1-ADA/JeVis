@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct UploadView: View {
     @State private var image: Image?
     @State private var filterIntensity = 0.5
     
@@ -83,6 +83,6 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    UploadView()
 }
 
