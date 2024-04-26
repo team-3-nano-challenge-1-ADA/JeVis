@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ResultView: View {
     var body: some View {
-        AnimationView(name: "circularBar")
-            .frame(width: 4, height: 4)
+        VStack {
+        }.padding()
     }
 }
 
