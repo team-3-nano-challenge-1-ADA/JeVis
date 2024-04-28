@@ -14,11 +14,14 @@
 		572F53222BDB48A100500EEB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53212BDB48A100500EEB /* ResultView.swift */; };
 		572F53242BDB48B300500EEB /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53232BDB48B300500EEB /* SampleModel.swift */; };
 		572F53262BDB509300500EEB /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53252BDB509300500EEB /* AnimationView.swift */; };
+		57549F8E2BDE86CC004DFF9A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57549F8D2BDE86CC004DFF9A /* WebView.swift */; };
 		57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */; };
 		57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE12BD78E2200B46280 /* JeVisApp.swift */; };
-		57DDFEE42BD78E2200B46280 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE32BD78E2200B46280 /* UploadView.swift */; };
+		57DDFEE42BD78E2200B46280 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDFEE32BD78E2200B46280 /* UploadView.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		57DDFEE62BD78E2300B46280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DDFEE52BD78E2300B46280 /* Assets.xcassets */; };
 		57DDFEE92BD78E2300B46280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DDFEE82BD78E2300B46280 /* Preview Assets.xcassets */; };
+		57F981042BDE2D62002CC64D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F981032BDE2D62002CC64D /* Constants.swift */; };
+		57F981062BDE2E9C002CC64D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F981052BDE2E9C002CC64D /* NetworkRequest.swift */; };
 		5BA1E5842BDB93C00014F236 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5832BDB93C00014F236 /* PageControl.swift */; };
 		5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5852BDB93DF0014F236 /* Onboarding.swift */; };
 		5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5872BDB93FC0014F236 /* HelpModel.swift */; };
@@ -32,12 +35,15 @@
 		572F53212BDB48A100500EEB /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		572F53232BDB48B300500EEB /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
 		572F53252BDB509300500EEB /* AnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
+		57549F8D2BDE86CC004DFF9A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechManager.swift; sourceTree = "<group>"; };
 		57DDFEDE2BD78E2200B46280 /* JeVis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JeVis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DDFEE12BD78E2200B46280 /* JeVisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeVisApp.swift; sourceTree = "<group>"; };
 		57DDFEE32BD78E2200B46280 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		57DDFEE52BD78E2300B46280 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57DDFEE82BD78E2300B46280 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		57F981032BDE2D62002CC64D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		57F981052BDE2E9C002CC64D /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		5BA1E5832BDB93C00014F236 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		5BA1E5852BDB93DF0014F236 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		5BA1E5872BDB93FC0014F236 /* HelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpModel.swift; sourceTree = "<group>"; };
@@ -64,6 +70,7 @@
 				5BA1E5832BDB93C00014F236 /* PageControl.swift */,
 				5BA1E5852BDB93DF0014F236 /* Onboarding.swift */,
 				4B8B96C32BDE37B100FB7D49 /* MapView.swift */,
+				57549F8D2BDE86CC004DFF9A /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -83,6 +90,8 @@
 				572F53252BDB509300500EEB /* AnimationView.swift */,
 				572F531A2BDB469A00500EEB /* ImagePicker.swift */,
 				57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */,
+				57F981032BDE2D62002CC64D /* Constants.swift */,
+				57F981052BDE2E9C002CC64D /* NetworkRequest.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -205,6 +214,7 @@
 				4B8B96C42BDE37B100FB7D49 /* MapView.swift in Sources */,
 				572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */,
 				5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */,
+				57F981062BDE2E9C002CC64D /* NetworkRequest.swift in Sources */,
 				5BA1E5842BDB93C00014F236 /* PageControl.swift in Sources */,
 				5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */,
 				57DDFEE42BD78E2200B46280 /* UploadView.swift in Sources */,
@@ -213,6 +223,8 @@
 				572F53242BDB48B300500EEB /* SampleModel.swift in Sources */,
 				572F53262BDB509300500EEB /* AnimationView.swift in Sources */,
 				572F53222BDB48A100500EEB /* ResultView.swift in Sources */,
+				57F981042BDE2D62002CC64D /* Constants.swift in Sources */,
+				57549F8E2BDE86CC004DFF9A /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
