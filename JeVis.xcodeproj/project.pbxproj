@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B8B96C42BDE37B100FB7D49 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B96C32BDE37B100FB7D49 /* MapView.swift */; };
 		4BAD93532BDBB09300F0B3A4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4BAD93522BDBB09300F0B3A4 /* Lottie */; };
 		572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531A2BDB469A00500EEB /* ImagePicker.swift */; };
 		572F531F2BDB482F00500EEB /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531E2BDB482F00500EEB /* HelpView.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B8B96C32BDE37B100FB7D49 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4B8B96C52BDE3E3E00FB7D49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		572F531A2BDB469A00500EEB /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		572F531E2BDB482F00500EEB /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		572F53212BDB48A100500EEB /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 				572F53212BDB48A100500EEB /* ResultView.swift */,
 				5BA1E5832BDB93C00014F236 /* PageControl.swift */,
 				5BA1E5852BDB93DF0014F236 /* Onboarding.swift */,
+				4B8B96C32BDE37B100FB7D49 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -102,6 +106,7 @@
 		57DDFEE02BD78E2200B46280 /* JeVis */ = {
 			isa = PBXGroup;
 			children = (
+				4B8B96C52BDE3E3E00FB7D49 /* Info.plist */,
 				572F531D2BDB476B00500EEB /* Models */,
 				572F531C2BDB476600500EEB /* Views */,
 				57CEE3A12BDA3C0F00D1053F /* Helpers */,
@@ -197,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */,
+				4B8B96C42BDE37B100FB7D49 /* MapView.swift in Sources */,
 				572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */,
 				5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */,
 				5BA1E5842BDB93C00014F236 /* PageControl.swift in Sources */,
@@ -340,21 +346,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JeVis/Preview Content\"";
-				DEVELOPMENT_TEAM = WRCQSAW72C;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JeVis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = id.developeracademy.JeVis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -370,15 +376,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JeVis/Preview Content\"";
-				DEVELOPMENT_TEAM = WRCQSAW72C;
+				DEVELOPMENT_TEAM = 5CCCQW7FJ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JeVis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

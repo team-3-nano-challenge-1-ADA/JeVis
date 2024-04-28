@@ -41,6 +41,10 @@ struct ImagePicker: UIViewControllerRepresentable{
     ->  UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
+        
+        picker.sourceType = .photoLibrary //user bisa milih foto dari galeri
+        
+        picker.mediaTypes = ["public.image"] //opsi utk pake gambar dari album
         return picker
     }
     
