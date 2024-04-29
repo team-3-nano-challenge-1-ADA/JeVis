@@ -89,7 +89,7 @@ struct UploadView: View {
         self.showProgressBar = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.showProgressBar = false
-            self.locationModel = LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png")
+            self.locationModel = LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/VMjSpp0/03e4a17543ae.png")
             self.navigateToResult = true
         }
     }

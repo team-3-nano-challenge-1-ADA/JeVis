@@ -10,6 +10,7 @@ import SwiftUI
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showSearchWebView = false
+    @State private var isWebviewLoading = true
     let locationModel: LocationModel?
     let image:Image?
     let defaultCoordinate = 0.0
@@ -37,17 +38,23 @@ struct ResultView: View {
                             .foregroundStyle(Color.button)
                     })
                     Spacer()
-                    Button(action: {
-                        showSearchWebView = true
-                        let urlString = "\(Constants.googleLensSearch)\(locationModel?.imageUrl ?? "")"
-                        let url = URL(string: urlString)!
-                        UIApplication.shared.open(url)
-                    }, label: {
-                        Image(systemName: "magnifyingglass.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundStyle(Color.button)
-                    })
+                    Image(systemName: "magnifyingglass.circle.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundStyle(Color.button)
+                        .onTapGesture {
+                            showSearchWebView = true
+                        }
+                        .sheet(isPresented: $showSearchWebView) {
+                            ZStack {
+                                WebView(url: URL(string: "\(Constants.googleLensSearch)\(locationModel?.imageUrl ?? "")")!, isLoading: $isWebviewLoading)
+                                if isWebviewLoading {
+                                    ProgressView()
+                                }
+                                
+                            }
+                            
+                        }
                 }.frame(width: 136)
                 Spacer()
                 Button(action: {}, label: {
@@ -73,5 +80,5 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(locationModel: LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png"),image: Image(systemName: "heart"))
+    ResultView(locationModel: LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/VMjSpp0/03e4a17543ae.png"),image: Image(systemName: "heart"))
 }
