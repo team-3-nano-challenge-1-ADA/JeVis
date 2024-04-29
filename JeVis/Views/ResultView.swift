@@ -13,7 +13,6 @@ struct ResultView: View {
     @State private var showSearchWebView = false
     @State private var navigateToMap = false
     @State private var isWebviewLoading = true
-    @State private var isAnimated = false
     var locationModel: LocationModel?
     var image:Image?
     let defaultCoordinate = 0.0
@@ -33,7 +32,7 @@ struct ResultView: View {
                         .transition(.opacity)
                         .frame(maxHeight: 180)
                         .padding([.bottom], 18)
-                    Text("\(locationModel?.latitude ?? defaultCoordinate),\(locationModel?.longitude ?? defaultCoordinate)")
+                    Text("\(locationModel?.latitude ?? defaultCoordinate), \(locationModel?.longitude ?? defaultCoordinate)")
                         .padding([.bottom], 16)
                     HStack {
                         NavigationLink(destination: MapView(locationModel: locationModel)) {
@@ -94,7 +93,7 @@ struct ResultView: View {
                     }
                 }
                 .onAppear(perform: {
-                    tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui") Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+                    tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui"). Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi, atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
                 })
                 .onDisappear(perform: {
                     if(tm.synthesizer.isSpeaking){
