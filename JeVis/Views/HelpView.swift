@@ -35,7 +35,7 @@ struct HelpView: View {
                             onboardings[index]
                         }
                     }.tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 500)
+                        .frame(height: 550)
                     
                     PageControl(currentPage: helpModel.tabIndex)
                         .padding(.bottom, 30)
