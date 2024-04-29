@@ -56,7 +56,7 @@ struct UploadView: View {
                     
                     Spacer()
                     if showProgressBar {
-                        AnimationView(name: "progressBar")
+                        AnimationView(name: "progressBar", animationSpeed: 0.5)
                             .frame(width: 100, height: 100)
                             .padding(.top)
                             .transition(.opacity)

@@ -23,6 +23,7 @@
 		57DDFEE92BD78E2300B46280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DDFEE82BD78E2300B46280 /* Preview Assets.xcassets */; };
 		57F981042BDE2D62002CC64D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F981032BDE2D62002CC64D /* Constants.swift */; };
 		57F981062BDE2E9C002CC64D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F981052BDE2E9C002CC64D /* NetworkRequest.swift */; };
+		5B38771B2BDFEEE8006C4B4D /* SpeechSynthesizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B38771A2BDFEEE8006C4B4D /* SpeechSynthesizerDelegate.swift */; };
 		5BA1E5842BDB93C00014F236 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5832BDB93C00014F236 /* PageControl.swift */; };
 		5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5852BDB93DF0014F236 /* Onboarding.swift */; };
 		5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5872BDB93FC0014F236 /* HelpModel.swift */; };
@@ -46,6 +47,7 @@
 		57DDFEE82BD78E2300B46280 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57F981032BDE2D62002CC64D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		57F981052BDE2E9C002CC64D /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		5B38771A2BDFEEE8006C4B4D /* SpeechSynthesizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerDelegate.swift; sourceTree = "<group>"; };
 		5BA1E5832BDB93C00014F236 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		5BA1E5852BDB93DF0014F236 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		5BA1E5872BDB93FC0014F236 /* HelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpModel.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				57CEE3A22BDA3C2900D1053F /* TextToSpeechManager.swift */,
 				57F981032BDE2D62002CC64D /* Constants.swift */,
 				57F981052BDE2E9C002CC64D /* NetworkRequest.swift */,
+				5B38771A2BDFEEE8006C4B4D /* SpeechSynthesizerDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */,
 				572F53242BDB48B300500EEB /* SampleModel.swift in Sources */,
 				572F53262BDB509300500EEB /* AnimationView.swift in Sources */,
+				5B38771B2BDFEEE8006C4B4D /* SpeechSynthesizerDelegate.swift in Sources */,
 				572F53222BDB48A100500EEB /* ResultView.swift in Sources */,
 				57F981042BDE2D62002CC64D /* Constants.swift in Sources */,
 				57549F8E2BDE86CC004DFF9A /* WebView.swift in Sources */,
