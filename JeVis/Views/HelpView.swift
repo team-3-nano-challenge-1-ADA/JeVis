@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct HelpView: View {
     @Bindable var helpModel = HelpModel()
     var pages: [String] = ["upload page", "result"]
     var onboardings = HelpModel().onboardings
+    var tm = TextToSpeechManager()
 
     var body: some View {
         NavigationStack{
@@ -33,7 +35,7 @@ struct HelpView: View {
                             onboardings[index]
                         }
                     }.tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 500)
+                        .frame(height: 550)
                     
                     PageControl(currentPage: helpModel.tabIndex)
                         .padding(.bottom, 30)
@@ -58,7 +60,15 @@ struct HelpView: View {
                             }
                         }
                     } else {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        Button(action: {
+                            if(tm.synthesizer.isPaused == true){
+                                tm.synthesizer.continueSpeaking()
+                            } else if (tm.synthesizer.isSpeaking == true){
+                                tm.synthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
+                            } else if(!tm.synthesizer.isSpeaking){
+                                tm.speak("Pada halaman pertama, Anda dapat menekan logo gambar yang terletak di tengah halaman untuk mengunggah gambar yang diinginkan. Kemudian, jika Anda menggeser foto contoh di atas, Anda akan melihat halaman hasil yang akan ditunjukkan setelah analisa gambar selesai. Anda juga dapat menekan tombol dengan panah kanan untuk melanjutkan ke halaman pengunggahan.")
+                            }
+                        }, label: {
                             Image(systemName: "speaker.wave.2.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
@@ -68,7 +78,6 @@ struct HelpView: View {
                 }
             }
         }.navigationBarBackButtonHidden(true)
-        
     }
 }
 

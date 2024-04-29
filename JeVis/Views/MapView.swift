@@ -9,14 +9,17 @@ import SwiftUI
 import MapKit
 import UIKit
 
-struct ContentView: View {
+//var locationModel: LocationModel = LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: String)
 
-    @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
+struct MapView: View {
+    @State private var cameraPosition: MapCameraPosition = .region(.userRegion(locationModel: nil))
+    let locationModel: LocationModel?
+    var defaultCoordinate = CLLocationCoordinate2D()
     
     var body: some View {
         
         Map(position: $cameraPosition){
-            Annotation("Location", coordinate: .userLocation){
+            Annotation("Location", coordinate: .userLocation(locationModel: locationModel)){
                 ZStack{
                     Circle()
                         .frame(width: 32, height: 32)
@@ -30,6 +33,9 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear {
+            cameraPosition = .region(.userRegion(locationModel: locationModel))
+        }
         .mapControls {
             MapCompass()
             MapPitchToggle()
@@ -40,20 +46,22 @@ struct ContentView: View {
 }
 
 extension CLLocationCoordinate2D{
-    static var userLocation: CLLocationCoordinate2D{
-        return .init(latitude: -7.607778, longitude: 110.203611)
+    static func userLocation(locationModel: LocationModel?) -> CLLocationCoordinate2D{
+        let latitude = locationModel?.latitude ?? -7.607778
+        let longitude = locationModel?.longitude ?? 110.203611
+        return .init(latitude: latitude, longitude: longitude)
     }
 }
 
 extension MKCoordinateRegion{
-    static var userRegion: MKCoordinateRegion{
-        return .init(center: .userLocation,
+    static func userRegion(locationModel: LocationModel?) -> MKCoordinateRegion{
+        return .init(center: .userLocation(locationModel: locationModel),
                      latitudinalMeters: 1000,
                      longitudinalMeters: 1000)
     }
 }
 
 #Preview {
-    ContentView()
+    MapView(locationModel: LocationModel(latitude: -6.3031838, longitude: 106.652819))
 }
 

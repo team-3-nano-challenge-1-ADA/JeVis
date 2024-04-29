@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showSearchWebView = false
+    @State private var navigateToMap = false
     @State private var isWebviewLoading = true
-    let locationModel: LocationModel?
-    let image:Image?
+    var locationModel: LocationModel?
+    var image:Image?
     let defaultCoordinate = 0.0
+    var tm = TextToSpeechManager()
     
     var body: some View {
+        NavigationView{
+            
         ZStack {
             Rectangle()
                 .fill(Color.background)
@@ -31,12 +36,19 @@ struct ResultView: View {
                 Text("\(locationModel?.latitude ?? defaultCoordinate),\(locationModel?.longitude ?? defaultCoordinate)")
                     .padding([.bottom], 16)
                 HStack {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Image(systemName: "mappin.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundStyle(Color.button)
-                    })
+
+//                    Button(action: {}, label: {
+//                        Image(systemName: "mappin.circle.fill")
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                            .foregroundStyle(Color.button)
+//                    })
+                    NavigationLink(destination: MapView(locationModel: locationModel)) {
+                                        Image(systemName: "mappin.circle.fill")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                            .foregroundColor(Color.button)
+                    }
                     Spacer()
                     Image(systemName: "magnifyingglass.circle.fill")
                         .resizable()
@@ -57,7 +69,15 @@ struct ResultView: View {
                         }
                 }.frame(width: 136)
                 Spacer()
-                Button(action: {}, label: {
+                Button(action: {
+                    if(tm.synthesizer.isPaused == true){
+                        tm.synthesizer.continueSpeaking()
+                    } else if (tm.synthesizer.isSpeaking == true){
+                        tm.synthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
+                    } else if(!tm.synthesizer.isSpeaking){
+                        tm.speak("Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+                    }
+                }, label: {
                     Image(systemName: "speaker.wave.2.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -76,9 +96,16 @@ struct ResultView: View {
                     }
                 }
             }
+//            .navigationBarBackButtonHidden(true)
+//            .navigationDestination(isPresented: $navigateToMap) {
+//               
+//            }
+        } //akhir navihationstack
+//        .navigationBarBackButtonHidden(true)
+        
     }
 }
 
 #Preview {
-    ResultView(locationModel: LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/VMjSpp0/03e4a17543ae.png"),image: Image(systemName: "heart"))
+    ResultView(locationModel: LocationModel(latitude: -6.3031838, longitude: 106.652819, address: "Green Office Park, BSD Tangerang", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png"),image: Image(systemName: "heart"))
 }
