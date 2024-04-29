@@ -78,7 +78,19 @@ struct UploadView: View {
         self.image = Image(uiImage: inputImage)
         self.showProgressBar = true
         guard let base64 = inputImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
-        fetchGeolocation(base64: base64)
+        // dicomment dulu untuk hemat quota api, uncomment ketika release
+//        fetchGeolocation(base64: base64)
+        // dipakai selama testing menggunakan data dummy, comment ketika release
+        dummyFetchGeolocation(base64: base64)
+    }
+    
+    func dummyFetchGeolocation(base64: String) {
+        self.showProgressBar = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.showProgressBar = false
+            self.locationModel = LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png")
+            self.navigateToResult = true
+        }
     }
     
     func fetchGeolocation(base64: String) {
