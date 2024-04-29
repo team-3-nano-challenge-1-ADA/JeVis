@@ -28,7 +28,7 @@ struct UploadView: View {
                     HStack {
                         Image("logo")
                             .resizable()
-                            .frame(width: 68, height: 62, alignment: .leading)
+                            .frame(width: 68, height: 38, alignment: .leading)
                             .padding()
                             .onTapGesture {
                                 self.showingImagePicker = false
@@ -128,9 +128,6 @@ struct UploadView: View {
     }
 }
 
-struct UploadView_Previews: PreviewProvider {
-    static var previews: some View {
-        UploadView()
-    }
+#Preview {
+    UploadView()
 }
-

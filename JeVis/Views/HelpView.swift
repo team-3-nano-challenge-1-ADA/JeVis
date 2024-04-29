@@ -13,20 +13,20 @@ struct HelpView: View {
     var onboardings = HelpModel().onboardings
 
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack {
                 Rectangle()
                     .fill(Color.background)
                     .ignoresSafeArea(edges: .all)
                 
                 VStack{
-                    HStack{
+                    HStack {
                         Image("logo")
                             .resizable()
-                            .frame(width: 68, height: 62)
+                            .frame(width: 68, height: 38, alignment: .leading)
+                            .padding()
                         Spacer()
                     }
-                    .padding(.leading, 30)
                     
                     TabView(selection: $helpModel.tabIndex){
                         ForEach(0..<2){index in
