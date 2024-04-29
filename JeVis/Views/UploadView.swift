@@ -98,7 +98,7 @@ struct UploadView: View {
         networkRequest.fetchGeolocation(base64ImageString: base64) { result in
             switch result {
             case .success(let location):
-                print("Latitude: \(location.latitude), Longitude: \(location.longitude), Address: \(location.address)")
+                print("Latitude: \(location.latitude), Longitude: \(location.longitude), Address: \(location.address ?? "")")
                 self.locationModel = location
                 uploadImage(base64: base64)
             case .failure(let error):

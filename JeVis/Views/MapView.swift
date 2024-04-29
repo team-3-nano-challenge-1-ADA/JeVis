@@ -9,8 +9,6 @@ import SwiftUI
 import MapKit
 import UIKit
 
-//var locationModel: LocationModel = LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: String)
-
 struct MapView: View {
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion(locationModel: nil))
     let locationModel: LocationModel?
@@ -40,8 +38,8 @@ struct MapView: View {
             MapCompass()
             MapPitchToggle()
             MapUserLocationButton()
+            MapScaleView()
         }
-        
     }
 }
 
