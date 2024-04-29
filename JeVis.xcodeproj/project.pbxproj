@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4B8B96C42BDE37B100FB7D49 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B96C32BDE37B100FB7D49 /* MapView.swift */; };
 		4BAD93532BDBB09300F0B3A4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4BAD93522BDBB09300F0B3A4 /* Lottie */; };
+		570259DA2BDF4E2B00402369 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570259D92BDF4E2B00402369 /* LocationModel.swift */; };
 		572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531A2BDB469A00500EEB /* ImagePicker.swift */; };
 		572F531F2BDB482F00500EEB /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F531E2BDB482F00500EEB /* HelpView.swift */; };
 		572F53222BDB48A100500EEB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F53212BDB48A100500EEB /* ResultView.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		4B8B96C32BDE37B100FB7D49 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4B8B96C52BDE3E3E00FB7D49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		570259D92BDF4E2B00402369 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		572F531A2BDB469A00500EEB /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		572F531E2BDB482F00500EEB /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		572F53212BDB48A100500EEB /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				572F53232BDB48B300500EEB /* SampleModel.swift */,
 				5BA1E5872BDB93FC0014F236 /* HelpModel.swift */,
+				570259D92BDF4E2B00402369 /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */,
 				57DDFEE42BD78E2200B46280 /* UploadView.swift in Sources */,
 				572F531F2BDB482F00500EEB /* HelpView.swift in Sources */,
+				570259DA2BDF4E2B00402369 /* LocationModel.swift in Sources */,
 				57DDFEE22BD78E2200B46280 /* JeVisApp.swift in Sources */,
 				572F53242BDB48B300500EEB /* SampleModel.swift in Sources */,
 				572F53262BDB509300500EEB /* AnimationView.swift in Sources */,

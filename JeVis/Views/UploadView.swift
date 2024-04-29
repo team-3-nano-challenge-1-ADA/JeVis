@@ -14,6 +14,7 @@ struct UploadView: View {
     @State private var showProgressBar = false
     @State private var navigateToResult = false
     @State private var imageUrl: String?
+    @State private var locationModel: LocationModel?
     
     let networkRequest = NetworkRequest()
     
@@ -66,17 +67,34 @@ struct UploadView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $navigateToResult) {
-                ResultView(coordinate: "s", imageUrl: imageUrl, image: image)
+                ResultView(locationModel: locationModel, image: image)
             }
         }
     }
     
     
-    func loadImage(){
+    func loadImage() {
         guard let inputImage = inputImage else {return}
         self.image = Image(uiImage: inputImage)
         self.showProgressBar = true
         guard let base64 = inputImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
+        fetchGeolocation(base64: base64)
+    }
+    
+    func fetchGeolocation(base64: String) {
+        networkRequest.fetchGeolocation(base64ImageString: base64) { result in
+            switch result {
+            case .success(let location):
+                print("Latitude: \(location.latitude), Longitude: \(location.longitude), Address: \(location.address)")
+                self.locationModel = location
+                uploadImage(base64: base64)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func uploadImage(base64: String) {
         networkRequest.uploadToImageBb(base64ImageData: base64) { (url, error) in
             self.showProgressBar = false
             if let error = error {
@@ -90,8 +108,7 @@ struct UploadView: View {
             print("imageUrl" + imageUrl)
             self.imageUrl = imageUrl
             if (self.imageUrl != nil) {
-                /// TODO Add call api reverse image to location below:
-                   
+                self.locationModel?.imageUrl = imageUrl
                 self.navigateToResult = true
             }
         }

@@ -10,9 +10,9 @@ import SwiftUI
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showSearchWebView = false
-    let coordinate:String
-    let imageUrl:String?
+    let locationModel: LocationModel?
     let image:Image?
+    let defaultCoordinate = 0.0
     
     var body: some View {
         ZStack {
@@ -27,7 +27,7 @@ struct ResultView: View {
                     .transition(.opacity)
                     .frame(maxHeight: 180)
                     .padding([.bottom], 18)
-                Text(coordinate)
+                Text("\(locationModel?.latitude ?? defaultCoordinate),\(locationModel?.longitude ?? defaultCoordinate)")
                     .padding([.bottom], 16)
                 HStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
@@ -39,7 +39,7 @@ struct ResultView: View {
                     Spacer()
                     Button(action: {
                         showSearchWebView = true
-                        let urlString = "\(Constants.googleLensSearch)\(imageUrl ?? "")"
+                        let urlString = "\(Constants.googleLensSearch)\(locationModel?.imageUrl ?? "")"
                         let url = URL(string: urlString)!
                         UIApplication.shared.open(url)
                     }, label: {
@@ -73,5 +73,5 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(coordinate: "7° 36′ 28\" LS, 110° 12′ 13\" BT", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png", image: Image(systemName: "heart"))
+    ResultView(locationModel: LocationModel(latitude: 51.50576400756836, longitude: -0.075251996517181, address: "Tower Bridge, A100 EC3N 4AB, UK", imageUrl: "https://i.ibb.co/vh2mkZX/bbe1c309fd34.png"),image: Image(systemName: "heart"))
 }
