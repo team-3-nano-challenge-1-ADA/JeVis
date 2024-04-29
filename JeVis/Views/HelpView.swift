@@ -67,7 +67,7 @@ struct HelpView: View {
                     }
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
         
     }
 }

@@ -34,15 +34,16 @@ struct UploadView: View {
                                 self.showingImagePicker = false
                             }
                         Spacer()
-                        Image(systemName: "questionmark.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color.button)
-                            .frame(width: 30, height: 30)
-                            .padding()
-                            .onTapGesture {
-                                self.showingImagePicker = false
-                            }
+                        NavigationLink{
+                            HelpView()
+                        } label: {
+                            Image(systemName: "questionmark.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.button)
+                                .frame(width: 30, height: 30)
+                                .padding()
+                        }
                     }
                     Image(systemName: "photo.circle.fill")
                         .resizable()
@@ -69,7 +70,7 @@ struct UploadView: View {
             .navigationDestination(isPresented: $navigateToResult) {
                 ResultView(locationModel: locationModel, image: image)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     
     
