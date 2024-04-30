@@ -61,24 +61,8 @@ struct ResultView: View {
                             }
                     }.frame(width: 136)
                     Spacer()
-//                    Button(action: {
-//                        if(tm.synthesizer.isPaused == true){
-//                            tm.synthesizer.continueSpeaking()
-//                        } else if (tm.synthesizer.isSpeaking == true){
-//                            tm.synthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
-//                        } else if(!tm.synthesizer.isSpeaking){
-//                            tm.speak("Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
-//                        }
-//                    }, label: {
-//                        Image(systemName: "speaker.wave.2.circle.fill")
-//                            .resizable()
-//                            .frame(width: 50, height: 50)
-//                            .foregroundStyle(Color.button)
-//                    })
-//                    .padding(.bottom, 50)
-                    
                     AnimationView(name: "soundWave2", animationSpeed: 1.0)
-                            .frame(width: 200, height: 200)
+                            .frame(width: 200, height: 80)
                             .padding(.leading, 10)
                 }.padding()
             }.navigationBarBackButtonHidden(true)
