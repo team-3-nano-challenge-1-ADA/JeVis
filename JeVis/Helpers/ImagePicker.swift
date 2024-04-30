@@ -7,29 +7,33 @@
 
 import SwiftUI
 
-struct ImagePicker: UIViewControllerRepresentable{
-//    typealias UIViewControllerType = <#type#>
+import SwiftUI
+
+struct ImagePicker: UIViewControllerRepresentable {
     class Coordinator: NSObject,
-    UINavigationControllerDelegate,
-    UIImagePickerControllerDelegate{
+                       UINavigationControllerDelegate,
+                       UIImagePickerControllerDelegate {
         let parent: ImagePicker
         
-        init(_ parent: ImagePicker){
+        init(_ parent: ImagePicker) {
             self.parent = parent
         }
         
-        func imagePickerController(_ picker:
-            UIImagePickerController,
-            didFinishPickingMediaWithInfo info:
-            [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[.originalImage] as?
-                UIImage{
+        func imagePickerController(_ picker: UIImagePickerController,
+                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = uiImage
             }
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
     
+    enum SourceType {
+        case camera
+        case photoLibrary
+    }
+    
+    let sourceType: SourceType
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
     
@@ -38,19 +42,23 @@ struct ImagePicker: UIViewControllerRepresentable{
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>)
-    ->  UIImagePickerController {
+    -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         
-        picker.sourceType = .photoLibrary //user bisa milih foto dari galeri
+        switch sourceType {
+        case .camera:
+            picker.sourceType = .camera
+        case .photoLibrary:
+            picker.sourceType = .photoLibrary
+        }
         
-        picker.mediaTypes = ["public.image"] //opsi utk pake gambar dari album
+        picker.mediaTypes = ["public.image"]
         return picker
     }
     
-    func updateUIViewController(_ uiViewController: 
-        UIImagePickerController, context:
-        UIViewControllerRepresentableContext<ImagePicker>) {
+    func updateUIViewController(_ uiViewController: UIImagePickerController,
+                                context: UIViewControllerRepresentableContext<ImagePicker>) {
         
     }
 }

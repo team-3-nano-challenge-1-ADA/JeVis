@@ -9,7 +9,9 @@ import SwiftUI
 
 struct UploadView: View {
     @State private var image: Image?
+    @State private var showingPickerOption = false
     @State private var showingImagePicker = false
+    @State private var showingCamera = false
     @State private var inputImage: UIImage?
     @State private var showProgressBar = false
     @State private var navigateToResult = false
@@ -32,6 +34,8 @@ struct UploadView: View {
                             .padding()
                             .onTapGesture {
                                 self.showingImagePicker = false
+                                self.showingCamera = false
+                                self.showingPickerOption = false
                             }
                         Spacer()
                         NavigationLink{
@@ -51,9 +55,9 @@ struct UploadView: View {
                         .frame(width: 100, height: 100)
                         .padding(.top, 200)
                         .onTapGesture {
-                            self.showingImagePicker = true
+                            if (self.showProgressBar) {return}
+                            self.showingPickerOption = true
                         }
-                    
                     Spacer()
                     if showProgressBar {
                         AnimationView(name: "progressBar")
@@ -63,8 +67,37 @@ struct UploadView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
+            .sheet(isPresented: $showingPickerOption) {
+                HStack {
+                    Image(systemName: "photo.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color.button)
+                        .frame(width: 60, height: 60)
+                        .padding()
+                        .onTapGesture {
+                            self.showingImagePicker = true
+                        }
+                        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                            ImagePicker(sourceType: .photoLibrary, image: self.$inputImage)
+                        }
+                    Image(systemName: "camera.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color.button)
+                        .frame(width: 60, height: 60)
+                        .padding()
+                        .onTapGesture {
+                            self.showingCamera = true
+                        }
+                        .sheet(isPresented: $showingCamera, onDismiss: loadImage) {
+                            ImagePicker(sourceType: .camera, image: self.$inputImage)
+                        }
+                }
+                .padding()
+                .presentationDetents([.fraction(0.15)])
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.background)
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $navigateToResult) {
@@ -76,13 +109,15 @@ struct UploadView: View {
     
     func loadImage() {
         guard let inputImage = inputImage else {return}
-        self.image = Image(uiImage: inputImage)
+        self.showingPickerOption = false
         self.showProgressBar = true
+        self.image = Image(uiImage: inputImage)
         guard let base64 = inputImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
         // dicomment dulu untuk hemat quota api, uncomment ketika release
-//        fetchGeolocation(base64: base64)
+        //        fetchGeolocation(base64: base64)
         // dipakai selama testing menggunakan data dummy, comment ketika release
         dummyFetchGeolocation(base64: base64)
+        self.inputImage = nil
     }
     
     func dummyFetchGeolocation(base64: String) {
