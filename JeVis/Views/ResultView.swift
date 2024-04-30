@@ -32,7 +32,7 @@ struct ResultView: View {
                         .transition(.opacity)
                         .frame(maxHeight: 180)
                         .padding([.bottom], 18)
-                    Text("\(locationModel?.latitude ?? defaultCoordinate),\(locationModel?.longitude ?? defaultCoordinate)")
+                    Text("\(locationModel?.latitude ?? defaultCoordinate), \(locationModel?.longitude ?? defaultCoordinate)")
                         .padding([.bottom], 16)
                     HStack {
                         NavigationLink(destination: MapView(locationModel: locationModel)) {
@@ -61,35 +61,46 @@ struct ResultView: View {
                             }
                     }.frame(width: 136)
                     Spacer()
-                    Button(action: {
-                        if(tm.synthesizer.isPaused == true){
-                            tm.synthesizer.continueSpeaking()
-                        } else if (tm.synthesizer.isSpeaking == true){
-                            tm.synthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
-                        } else if(!tm.synthesizer.isSpeaking){
-                            tm.speak("Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
-                        }
-                    }, label: {
-                        Image(systemName: "speaker.wave.2.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundStyle(Color.button)
-                    })
-                    .padding(.bottom, 50)
+//                    Button(action: {
+//                        if(tm.synthesizer.isPaused == true){
+//                            tm.synthesizer.continueSpeaking()
+//                        } else if (tm.synthesizer.isSpeaking == true){
+//                            tm.synthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
+//                        } else if(!tm.synthesizer.isSpeaking){
+//                            tm.speak("Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+//                        }
+//                    }, label: {
+//                        Image(systemName: "speaker.wave.2.circle.fill")
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                            .foregroundStyle(Color.button)
+//                    })
+//                    .padding(.bottom, 50)
+                    
+                    AnimationView(name: "soundWave2", animationSpeed: 1.0)
+                            .frame(width: 200, height: 200)
+                            .padding(.leading, 10)
                 }.padding()
             }.navigationBarBackButtonHidden(true)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            dismiss()
+                        NavigationLink {
+                            UploadView()
                         } label: {
                             Image(systemName: "arrow.backward")
                                 .foregroundColor(.button)
                         }
                     }
                 }
+                .onAppear(perform: {
+                    tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui"). Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi, atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+                })
+                .onDisappear(perform: {
+                    if(tm.synthesizer.isSpeaking){
+                        tm.synthesizer.stopSpeaking(at: .immediate)
+                    }
+                })
         }.navigationBarBackButtonHidden(true)
-        
     }
 }
 

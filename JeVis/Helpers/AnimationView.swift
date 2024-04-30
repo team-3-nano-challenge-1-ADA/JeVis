@@ -11,14 +11,14 @@ import Lottie
 struct AnimationView: UIViewRepresentable {
     let name:String
     let animationView = LottieAnimationView()
-    
+    let animationSpeed: Double?    
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: .zero)
         
         let animationView = LottieAnimationView(name: name)
         animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.animationSpeed = 0.5
+        animationView.loopMode = .repeat(12)
+        animationView.animationSpeed = animationSpeed ?? 0.5
         animationView.play()
         view.addSubview(animationView)
         animationView.translatesAutoresizingMaskIntoConstraints = false

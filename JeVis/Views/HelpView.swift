@@ -10,7 +10,6 @@ import AVFAudio
 
 struct HelpView: View {
     @Bindable var helpModel = HelpModel()
-    var pages: [String] = ["upload page", "result"]
     var onboardings = HelpModel().onboardings
     var tm = TextToSpeechManager()
 
@@ -78,6 +77,11 @@ struct HelpView: View {
                 }
             }
         }.navigationBarBackButtonHidden(true)
+            .onDisappear(perform: {
+                if(tm.synthesizer.isSpeaking){
+                    tm.synthesizer.stopSpeaking(at: .immediate)
+                }
+            })
     }
 }
 
