@@ -49,15 +49,6 @@ struct UploadView: View {
                                 .padding()
                         }
                     }
-//                    Image(systemName: "photo.circle.fill")
-//                        .resizable()
-//                        .foregroundColor(Color.button)
-//                        .frame(width: 100, height: 100)
-//                        .padding(.top, 200)
-//                        .onTapGesture {
-//                            if (self.showProgressBar) {return}
-//                            self.showingPickerOption = true
-//                        }
                     AnimationView(name: "tap", animationSpeed: 0.5)
                         .frame(width: 200, height: 200)
                         .padding(.top, 200)
