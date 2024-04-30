@@ -13,6 +13,7 @@ struct ResultView: View {
     @State private var showSearchWebView = false
     @State private var navigateToMap = false
     @State private var isWebviewLoading = true
+    @State private var isAnimating = true
     var locationModel: LocationModel?
     var image:Image?
     let defaultCoordinate = 0.0
@@ -61,9 +62,16 @@ struct ResultView: View {
                             }
                     }.frame(width: 136)
                     Spacer()
-                    AnimationView(name: "soundWave2", animationSpeed: 1.0)
-                            .frame(width: 200, height: 80)
-                            .padding(.leading, 10)
+                    
+                    if(isAnimating){
+                        AnimationView(name: "soundWave2", animationSpeed: 1.0)
+                                .frame(width: 200, height: 80)
+                                .padding(.leading, 10)
+                                .onAppear(perform: {
+                                    stopAnimation()
+                                })
+                    }
+                    
                 }.padding()
             }.navigationBarBackButtonHidden(true)
                 .toolbar {
@@ -78,6 +86,7 @@ struct ResultView: View {
                 }
                 .onAppear(perform: {
                     tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui"). Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi, atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+
                 })
                 .onDisappear(perform: {
                     if(tm.synthesizer.isSpeaking){
@@ -85,6 +94,12 @@ struct ResultView: View {
                     }
                 })
         }.navigationBarBackButtonHidden(true)
+    }
+    
+    func stopAnimation(){
+        tm.delegate.didFinishSpeechCallback = {
+            isAnimating = false
+        }
     }
 }
 
