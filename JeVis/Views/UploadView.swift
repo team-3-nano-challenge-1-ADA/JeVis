@@ -78,6 +78,8 @@ struct UploadView: View {
                             .padding(.top)
                             .transition(.opacity)
                     }
+                    
+                    GifView("loadingGif")
                 }
             }
             .sheet(isPresented: $showingPickerOption) {
@@ -127,7 +129,7 @@ struct UploadView: View {
         self.image = Image(uiImage: inputImage)
         guard let base64 = inputImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
         // dicomment dulu untuk hemat quota api, uncomment ketika release
-        //        fetchGeolocation(base64: base64)
+//                fetchGeolocation(base64: base64)
         // dipakai selama testing menggunakan data dummy, comment ketika release
         dummyFetchGeolocation(base64: base64)
         self.inputImage = nil

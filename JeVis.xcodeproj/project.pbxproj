@@ -27,6 +27,7 @@
 		5BA1E5842BDB93C00014F236 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5832BDB93C00014F236 /* PageControl.swift */; };
 		5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5852BDB93DF0014F236 /* Onboarding.swift */; };
 		5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5872BDB93FC0014F236 /* HelpModel.swift */; };
+		5BB5EC642BE282DC00DC3A5F /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB5EC632BE282DC00DC3A5F /* GifView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		5BA1E5832BDB93C00014F236 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		5BA1E5852BDB93DF0014F236 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		5BA1E5872BDB93FC0014F236 /* HelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpModel.swift; sourceTree = "<group>"; };
+		5BB5EC632BE282DC00DC3A5F /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				5BA1E5852BDB93DF0014F236 /* Onboarding.swift */,
 				4B8B96C32BDE37B100FB7D49 /* MapView.swift */,
 				57549F8D2BDE86CC004DFF9A /* WebView.swift */,
+				5BB5EC632BE282DC00DC3A5F /* GifView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CEE3A32BDA3C2900D1053F /* TextToSpeechManager.swift in Sources */,
+				5BB5EC642BE282DC00DC3A5F /* GifView.swift in Sources */,
 				4B8B96C42BDE37B100FB7D49 /* MapView.swift in Sources */,
 				572F531B2BDB469A00500EEB /* ImagePicker.swift in Sources */,
 				5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */,
