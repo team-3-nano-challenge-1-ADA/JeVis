@@ -50,15 +50,26 @@ struct UploadView: View {
                                 .padding()
                         }
                     }
-                    AnimationView(name: "tap", animationSpeed: 0.5)
-                        .frame(width: 200, height: 200)
-                        .padding(.top, 200)
-                        .onTapGesture {
-                            if(self.showProgressBar) {return}
-                            self.showingPickerOption = true
-                            self.isClicked = true
-                        }
-                        .sensoryFeedback(.success, trigger: isClicked)
+                    ZStack{
+                        AnimationView(name: "tap", animationSpeed: 0.5)
+                            .frame(width: 200, height: 200)
+                            .padding(.top, 200)
+                            .onTapGesture {
+                                if(self.showProgressBar) {return}
+                            }
+                            
+                        Image(systemName: "photo.circle.fill")
+                            .resizable()
+                            .frame(width: 121, height: 119)
+                            .foregroundStyle(Color.button)
+                            .padding(.top, 200)
+                            .onTapGesture {
+                                self.showingPickerOption = true
+                                self.isClicked = true
+                            }
+                            .sensoryFeedback(.success, trigger: isClicked)
+                    }
+                    
                     
                     Spacer()
                     if showProgressBar {

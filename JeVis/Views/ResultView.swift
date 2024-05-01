@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFAudio
+import UIKit
 
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
@@ -34,7 +35,7 @@ struct ResultView: View {
                         .transition(.opacity)
                         .frame(maxHeight: 180)
                         .padding([.bottom], 18)
-                        .sensoryFeedback(.success, trigger: isTaskCompleted)
+//                        .sensoryFeedback(.success, trigger: isTaskCompleted)
                     Text("\(locationModel?.latitude ?? defaultCoordinate), \(locationModel?.longitude ?? defaultCoordinate)")
                         .padding([.bottom], 16)
                     HStack {
@@ -88,6 +89,8 @@ struct ResultView: View {
                 }
                 .onAppear(perform: {
                     tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui"). Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi, atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
+                    
+                    triggerHapticFeedback()
 
                 })
                 .onDisappear(perform: {
@@ -102,6 +105,11 @@ struct ResultView: View {
         tm.delegate.didFinishSpeechCallback = {
             isAnimating = false
         }
+    }
+    
+    func triggerHapticFeedback() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 
