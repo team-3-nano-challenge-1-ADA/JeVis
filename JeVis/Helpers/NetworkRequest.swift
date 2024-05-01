@@ -130,4 +130,58 @@ class NetworkRequest {
         }
         dataTask.resume()
     }
+    
+    func fetchGeolocationPicarta(base64ImageString: String, completion: @escaping (Result<LocationModel, Error>) -> Void) {
+        let headers = [
+            "Content-Type": "application/json"
+        ]
+        
+        let parameters = [
+            "TOKEN": Constants.picartaApiKey,
+            "IMAGE": base64ImageString,
+        ] as [String : Any]
+        
+        guard let postData = try? JSONSerialization.data(withJSONObject: parameters) else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to serialize JSON data"])))
+            return
+        }
+        
+        var request = URLRequest(url: URL(string: "\(Constants.picartaClassifyApi)")!)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to get successful response"])))
+                return
+            }
+            
+            guard let responseData = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data in response"])))
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                let latitude = json?["ai_lat"] as? Double ?? 0.0
+                let longitude = json?["ai_lon"] as? Double ?? 0.0
+                let country = json?["ai_country"] as? String
+                let province = json?["province"] as? String
+                let city = json?["city"] as? String
+                let address = "\(city ?? ""), \(province ?? ""), \(country ?? "")"
+                let locationModel = LocationModel(latitude: latitude, longitude: longitude, address: address)
+                completion(.success(locationModel))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        dataTask.resume()
+    }
 }
