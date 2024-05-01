@@ -35,7 +35,6 @@ struct ResultView: View {
                         .transition(.opacity)
                         .frame(maxHeight: 180)
                         .padding([.bottom], 18)
-//                        .sensoryFeedback(.success, trigger: isTaskCompleted)
                     Text("\(locationModel?.latitude ?? defaultCoordinate), \(locationModel?.longitude ?? defaultCoordinate)")
                         .padding([.bottom], 16)
                     HStack {

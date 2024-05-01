@@ -7,7 +7,6 @@
 
 import SwiftUI
 import WebKit
-import UIKit
 
 struct GifView: UIViewRepresentable {
     private let name: String
@@ -18,33 +17,13 @@ struct GifView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-//        let image = UIImage(named: name)
-//        let url = image?.url
-//        let data = try! Data(contentsOf: url!)
-//        webView.load(data,
-//                     mimeType: "image/gif",
-//                     characterEncodingName: "UTF-8",
-//                     baseURL: url!.deletingLastPathComponent()
-//        )
-        
-        if let image = UIImage(named: name) {
-                    image.accessibilityIdentifier = name // Setting accessibility identifier
-                    if let url = image.url {
-                        URLSession.shared.dataTask(with: url) { data, response, error in
-                            guard let data = data, error == nil else {
-                                // Handle error
-                                return
-                            }
-                            DispatchQueue.main.async {
-                                webView.load(data,
-                                             mimeType: "image/gif",
-                                             characterEncodingName: "UTF-8",
-                                             baseURL: url.deletingLastPathComponent()
-                                )
-                            }
-                        }.resume()
-                    }
-                }
+        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+        let data = try! Data(contentsOf: url)
+        webView.load(data,
+                     mimeType: "image/gif",
+                     characterEncodingName: "UTF-8",
+                     baseURL: url.deletingLastPathComponent()
+        )
         
         return webView
     }
@@ -55,16 +34,6 @@ struct GifView: UIViewRepresentable {
     }
     
 //    typealias UIViewType = WKWebView
-}
-
-extension UIImage {
-    var url: URL? {
-        if let assetName = self.accessibilityIdentifier {
-            let bundle = Bundle(for: type(of: self))
-            return bundle.url(forResource: assetName, withExtension: "gif")
-        }
-        return nil
-    }
 }
 
 #Preview {

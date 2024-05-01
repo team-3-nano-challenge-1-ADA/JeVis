@@ -28,6 +28,7 @@
 		5BA1E5862BDB93DF0014F236 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5852BDB93DF0014F236 /* Onboarding.swift */; };
 		5BA1E5882BDB93FC0014F236 /* HelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1E5872BDB93FC0014F236 /* HelpModel.swift */; };
 		5BB5EC642BE282DC00DC3A5F /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB5EC632BE282DC00DC3A5F /* GifView.swift */; };
+		5BB5EC662BE28D0300DC3A5F /* loadingGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5BB5EC652BE28D0300DC3A5F /* loadingGif.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		5BA1E5852BDB93DF0014F236 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		5BA1E5872BDB93FC0014F236 /* HelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpModel.swift; sourceTree = "<group>"; };
 		5BB5EC632BE282DC00DC3A5F /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		5BB5EC652BE28D0300DC3A5F /* loadingGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingGif.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		572F531C2BDB476600500EEB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BB5EC652BE28D0300DC3A5F /* loadingGif.gif */,
 				57DDFEE32BD78E2200B46280 /* UploadView.swift */,
 				572F531E2BDB482F00500EEB /* HelpView.swift */,
 				572F53212BDB48A100500EEB /* ResultView.swift */,
@@ -207,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BB5EC662BE28D0300DC3A5F /* loadingGif.gif in Resources */,
 				57DDFEE92BD78E2300B46280 /* Preview Assets.xcassets in Resources */,
 				57DDFEE62BD78E2300B46280 /* Assets.xcassets in Resources */,
 			);
