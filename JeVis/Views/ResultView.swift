@@ -14,6 +14,7 @@ struct ResultView: View {
     @State private var navigateToMap = false
     @State private var isWebviewLoading = true
     @State private var isAnimating = true
+    @State private var isTaskCompleted = true
     var locationModel: LocationModel?
     var image:Image?
     let defaultCoordinate = 0.0
@@ -33,6 +34,7 @@ struct ResultView: View {
                         .transition(.opacity)
                         .frame(maxHeight: 180)
                         .padding([.bottom], 18)
+                        .sensoryFeedback(.success, trigger: isTaskCompleted)
                     Text("\(locationModel?.latitude ?? defaultCoordinate), \(locationModel?.longitude ?? defaultCoordinate)")
                         .padding([.bottom], 16)
                     HStack {

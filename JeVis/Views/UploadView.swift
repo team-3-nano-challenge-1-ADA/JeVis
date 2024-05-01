@@ -17,6 +17,7 @@ struct UploadView: View {
     @State private var navigateToResult = false
     @State private var imageUrl: String?
     @State private var locationModel: LocationModel?
+    @State private var isClicked = false
     
     let networkRequest = NetworkRequest()
     
@@ -55,7 +56,9 @@ struct UploadView: View {
                         .onTapGesture {
                             if(self.showProgressBar) {return}
                             self.showingPickerOption = true
+                            self.isClicked = true
                         }
+                        .sensoryFeedback(.success, trigger: isClicked)
                     
                     Spacer()
                     if showProgressBar {
