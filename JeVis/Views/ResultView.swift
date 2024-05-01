@@ -11,9 +11,7 @@ import UIKit
 
 struct ResultView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var showSearchWebView = false
     @State private var navigateToMap = false
-    @State private var isWebviewLoading = true
     @State private var isAnimating = true
     @State private var isTaskCompleted = true
     var locationModel: LocationModel?
@@ -50,28 +48,20 @@ struct ResultView: View {
                             .frame(width: 50, height: 50)
                             .foregroundStyle(Color.button)
                             .onTapGesture {
-                                showSearchWebView = true
-                            }
-                            .sheet(isPresented: $showSearchWebView) {
-                                ZStack {
-                                    WebView(url: URL(string: "\(Constants.googleLensSearch)\(locationModel?.imageUrl ?? "")")!, isLoading: $isWebviewLoading)
-                                    if isWebviewLoading {
-                                        ProgressView()
-                                    }
-                                    
-                                }
-                                
+                                let urlString = "\(Constants.googleLensSearch)\(locationModel?.imageUrl ?? "")"
+                                let url = URL(string: urlString)!
+                                UIApplication.shared.open(url)
                             }
                     }.frame(width: 136)
                     Spacer()
                     
                     if(isAnimating){
                         AnimationView(name: "soundWave2", animationSpeed: 1.0)
-                                .frame(width: 200, height: 80)
-                                .padding(.leading, 10)
-                                .onAppear(perform: {
-                                    stopAnimation()
-                                })
+                            .frame(width: 200, height: 80)
+                            .padding(.leading, 10)
+                            .onAppear(perform: {
+                                stopAnimation()
+                            })
                     }
                     
                 }.padding()
@@ -90,7 +80,7 @@ struct ResultView: View {
                     tm.speak("Menurut prediksi, lokasi gambar yang Anda unggah berada di \(locationModel?.address ?? "Tidak diketahui"). Anda dapat menekan tombol pin untuk beralih ke aplikasi navigasi, atau tombol kaca pembesar untuk beralih ke aplikasi pencarian.")
                     
                     triggerHapticFeedback()
-
+                    
                 })
                 .onDisappear(perform: {
                     if(tm.synthesizer.isSpeaking){
