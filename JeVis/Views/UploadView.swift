@@ -18,6 +18,7 @@ struct UploadView: View {
     @State private var imageUrl: String?
     @State private var locationModel: LocationModel?
     @State private var isClicked = false
+    @State private var gifLoading = false
     
     let networkRequest = NetworkRequest()
     
@@ -50,24 +51,29 @@ struct UploadView: View {
                                 .padding()
                         }
                     }
-                    ZStack{
-                        AnimationView(name: "tap", animationSpeed: 0.5)
-                            .frame(width: 200, height: 200)
-                            .padding(.top, 200)
-                            .onTapGesture {
-                                if(self.showProgressBar) {return}
-                            }
-                        
-                        Image(systemName: "photo.circle.fill")
-                            .resizable()
-                            .frame(width: 121, height: 119)
-                            .foregroundStyle(Color.button)
-                            .padding(.top, 200)
-                            .onTapGesture {
-                                self.showingPickerOption = true
-                                self.isClicked = true
-                            }
-                            .sensoryFeedback(.success, trigger: isClicked)
+                    if(!gifLoading){
+                        ZStack{
+                            AnimationView(name: "tap", animationSpeed: 0.5)
+                                .frame(width: 200, height: 200)
+                                .padding(.top, 200)
+                                .onTapGesture {
+                                    if(self.showProgressBar) {return}
+                                }
+                                
+                            Image(systemName: "photo.circle.fill")
+                                .resizable()
+                                .frame(width: 121, height: 119)
+                                .foregroundStyle(Color.button)
+                                .padding(.top, 200)
+                                .onTapGesture {
+                                    self.showingPickerOption = true
+                                    self.isClicked = true
+                                }
+                                .sensoryFeedback(.success, trigger: isClicked)
+                        }
+                    } else {
+                        GifView("loadingGif")
+                            .padding(.top, 100)
                     }
                     
                     
@@ -78,8 +84,6 @@ struct UploadView: View {
                             .padding(.top)
                             .transition(.opacity)
                     }
-                    
-                    GifView("loadingGif")
                 }
             }
             .sheet(isPresented: $showingPickerOption) {
@@ -126,6 +130,7 @@ struct UploadView: View {
         guard let inputImage = inputImage else {return}
         self.showingPickerOption = false
         self.showProgressBar = true
+        self.gifLoading = true
         self.image = Image(uiImage: inputImage)
         let resizedImage = resizeImage(inputImage, targetSize: CGSize(width: 50, height: 50))
         guard let base64 = resizedImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
