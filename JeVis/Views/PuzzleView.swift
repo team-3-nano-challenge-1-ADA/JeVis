@@ -10,7 +10,7 @@ import PhotosUI
 
 struct PuzzleView: View {
     
-    @State private var selectedPhotoItem: PhotosPickerItem?
+    let selectedPhotoItem: UIImage?
     @State private var puzzleImage: UIImage?
     @State private var orderedTiles: [[PuzzleTile]]?
     @State private var shuffledTiles: [[PuzzleTile]]?
@@ -22,124 +22,58 @@ struct PuzzleView: View {
     private let tileSpacing = 5.0
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if loadedPuzzle, let shuffledTiles, let puzzleImage {
-
-                    HStack(spacing: 20) {
-                        movesCountView()
-                        
-                        Spacer()
-                        
-                        puzzleHintToggleView()
-                        
-                        changePhotoView()
-                    }
-                    .padding([.top, .horizontal], 20)
-                    .font(.system(size: 20))
+        VStack {
+            if loadedPuzzle, let shuffledTiles, let puzzleImage {
+                
+                HStack(spacing: 20) {
+                    movesCountView()
                     
-                    puzzleHintView(puzzleImage)
+                    Spacer()
                     
-                    puzzleView(shuffledTiles)
-                        .padding()
-                        .alert("🏆", isPresented: $userWon) {}
+                    puzzleHintToggleView()
                 }
-                else {
-                    emptyPuzzleView()
-                }
+                .padding([.top, .horizontal], 20)
+                .font(.system(size: 20))
+                
+                puzzleHintView(puzzleImage)
+                
+                puzzleView(shuffledTiles)
+                    .padding()
+                    .alert("🏆", isPresented: $userWon) {}
             }
-            .background {
-                Color.background
-                    .ignoresSafeArea()
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
-                if loadedPuzzle {
-                    ToolbarItem(placement: .topBarLeading) {
-                        closeButtonView()
-                    }
-                   
-                }
-                ToolbarItem(placement: .principal) {
-                    titleView()
-                }
-            })
         }
+        .background {
+            Color.background
+                .ignoresSafeArea()
+        }
+        
         .foregroundStyle(.white)
         .font(.title)
-    }
-
-    @ViewBuilder private func titleView() -> some View {
-        HStack {
-            Image(systemName: "puzzlepiece.fill")
-        }
-        .foregroundLinearGradient(colors: [Color.button, Color.button], startPoint: .top, endPoint: .bottom)
-    }
-    
-    @ViewBuilder private func closeButtonView() -> some View {
-        Button(action: {
-            reset()
-            selectedPhotoItem = nil
-        }, label: {
-            Image(systemName: "xmark.circle.fill")
-                .font(.body)
-                .foregroundLinearGradient(colors: [Color.button, Color.button], startPoint: .top, endPoint: .bottom)
-        })
-    }
-    
-    @ViewBuilder private func emptyPuzzleView() -> some View {
-        VStack {
-            if loadingImage {
-                Text("...")
-                    .bold()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else {
-                ContentUnavailableView(label: {
-                    Text("No Image Selected")
-                        .bold()
-                        .foregroundColor(.background)
-                }, description: {
-                    Text("Click the button below to pick one")
-                        .foregroundColor(.background)
-                }, actions: {
-                    photoPickerView()
-                        .foregroundStyle(Color.button)
-                })
-            }
-        }
-        .foregroundStyle(Color.button)
-    }
-
-    @ViewBuilder private func photoPickerView() -> some View {
-        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
-            Image(systemName: "photo")
-        }
-        .onChange(of: selectedPhotoItem, { _, _ in
-            Task {
-                if let selectedPhotoItem {
-                    reset()
-                    loadingImage = true
-                    loadedPuzzle = false
+        .onAppear(perform: {
+            if let selectedPhotoItem {
+                reset()
+                loadingImage = true
+                loadedPuzzle = false
+                
+                do {
+                    let (image, tiles) = try PuzzleLoader().loadPuzzleFromItem(selectedPhotoItem)
+                    puzzleImage = image
+                    orderedTiles = tiles.0
+                    shuffledTiles = tiles.1
                     
-                    do {
-                        let (image, tiles) = try await PuzzleLoader().loadPuzzleFromItem(selectedPhotoItem)
-                        puzzleImage = image
-                        orderedTiles = tiles.0
-                        shuffledTiles = tiles.1
-                        
-                        loadedPuzzle = true
-                    }
-                    catch {
-                        loadedPuzzle = false
-                        print(error.localizedDescription)
-                    }
-                    
-                    loadingImage = false
+                    loadedPuzzle = true
                 }
+                catch {
+                    loadedPuzzle = false
+                    print(error.localizedDescription)
+                }
+                
+                loadingImage = false
             }
+            
         })
     }
-
+    
     @ViewBuilder private func movesCountView() -> some View {
         VStack(alignment: .leading) {
             HStack {
@@ -148,11 +82,11 @@ struct PuzzleView: View {
                     .monospaced()
             }
             
-          
+            
         }
         .foregroundStyle(Color.black)
     }
-
+    
     @ViewBuilder private func puzzleHintToggleView() -> some View {
         VStack {
             Button(action: {
@@ -165,23 +99,15 @@ struct PuzzleView: View {
         }
         .foregroundStyle(Color.orange)
     }
-
-    @ViewBuilder private func changePhotoView() -> some View {
-        VStack {
-            photoPickerView()
-           
-        }
-        .foregroundStyle(Color.button)
-    }
     
-    @ViewBuilder private func puzzleHintView(_ image: UIImage) -> some View {
+    @ViewBuilder private func puzzleHintView(_ image: UIImage?) -> some View {
         if showHint {
             PuzzleTileView(tile: PuzzleTile(image: image))
                 .frame(width: 200, height: 200)
                 .animation(.linear, value: showHint)
         }
     }
-
+    
     @ViewBuilder private func puzzleView(_ tiles: [[PuzzleTile]]) -> some View {
         GeometryReader { geo in
             VStack(spacing: tileSpacing) {
@@ -201,7 +127,7 @@ struct PuzzleView: View {
             }
         }
     }
-
+    
     private func reset() {
         moves = 0
         userWon = false
@@ -222,9 +148,9 @@ extension PuzzleView {
         guard var shuffledTiles = shuffledTiles else { return }
         guard shuffledTiles[row][column].isSpareTile == false else { return }
         
-
+        
         if let spareTileIndex = findAdjacentSpareTile(to: (row, column)) {
-
+            
             moves += 1
             let tappedTile = shuffledTiles[row][column]
             shuffledTiles[row][column] = shuffledTiles[spareTileIndex.0][spareTileIndex.1]
@@ -247,7 +173,7 @@ extension PuzzleView {
         
         return nil
     }
-
+    
     private func getAdjacentTileIndex(from tileIndex: (Int, Int), direction: Direction) -> (Int, Int) {
         switch direction {
         case .up:
@@ -260,7 +186,7 @@ extension PuzzleView {
             return (tileIndex.0, tileIndex.1 + 1)
         }
     }
-
+    
     private func isValidIndex(_ tileIndex: (Int, Int)) -> Bool {
         guard let shuffledTiles = shuffledTiles else { return false }
         return tileIndex.0 >= 0 && tileIndex.0 < shuffledTiles.count &&
@@ -283,6 +209,6 @@ extension View {
     }
 }
 
-#Preview {
-    PuzzleView()
-}
+//#Preview {
+//    PuzzleView(selectedPhotoItem: $nil)
+//}

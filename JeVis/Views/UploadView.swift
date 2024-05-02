@@ -72,8 +72,9 @@ struct UploadView: View {
                                 .sensoryFeedback(.success, trigger: isClicked)
                         }
                     } else {
-                        GifView("loadingGif")
-                            .padding(.top, 100)
+//                        GifView("loadingGif")
+//                            .padding(.top, 100)
+                        PuzzleView(selectedPhotoItem: self.inputImage)
                     }
                     
                     

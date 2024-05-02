@@ -9,11 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct PuzzleLoader{
-    func loadPuzzleFromItem(_ photoItem: PhotosPickerItem) async throws -> (UIImage, ([[PuzzleTile]], [[PuzzleTile]])) {
-        guard let imageData = try await photoItem.loadTransferable(type: Data.self) else{
-            throw NSError(domain: "error loading photo from library", code: 0)
-        }
-        guard let inputImage = UIImage(data: imageData),
+    func loadPuzzleFromItem(_ photoItem: UIImage?) throws -> (UIImage, ([[PuzzleTile]], [[PuzzleTile]])) {
+        guard let inputImage = photoItem,
+              
               let croppedImage = cropImageForPuzzle(image: inputImage) else{
             throw NSError(domain: "error loading puzzle image", code: 1)
         }
