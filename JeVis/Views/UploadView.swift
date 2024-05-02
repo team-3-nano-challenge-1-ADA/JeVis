@@ -13,6 +13,7 @@ struct UploadView: View {
     @State private var showingImagePicker = false
     @State private var showingCamera = false
     @State private var inputImage: UIImage?
+    @State private var puzzleImage: UIImage?
     @State private var showProgressBar = false
     @State private var navigateToResult = false
     @State private var imageUrl: String?
@@ -74,7 +75,7 @@ struct UploadView: View {
                     } else {
 //                        GifView("loadingGif")
 //                            .padding(.top, 100)
-                        PuzzleView(selectedPhotoItem: self.inputImage)
+                        PuzzleView(selectedPhotoItem: self.puzzleImage)
                     }
                     
                     
@@ -129,6 +130,7 @@ struct UploadView: View {
     
     func loadImage() {
         guard let inputImage = inputImage else {return}
+        self.puzzleImage = inputImage
         self.showingPickerOption = false
         self.showProgressBar = true
         self.gifLoading = true
@@ -138,7 +140,7 @@ struct UploadView: View {
         // dicomment dulu untuk hemat quota api, uncomment ketika release
 //        fetchGeolocation(base64: base64)
         // dipakai selama testing menggunakan data dummy, comment ketika release
-                dummyFetchGeolocation(base64: base64)
+        dummyFetchGeolocation(base64: base64)
         self.inputImage = nil
     }
     

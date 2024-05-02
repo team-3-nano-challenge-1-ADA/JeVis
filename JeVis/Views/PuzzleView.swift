@@ -10,7 +10,7 @@ import PhotosUI
 
 struct PuzzleView: View {
     
-    let selectedPhotoItem: UIImage?
+    @State var selectedPhotoItem: UIImage?
     @State private var puzzleImage: UIImage?
     @State private var orderedTiles: [[PuzzleTile]]?
     @State private var shuffledTiles: [[PuzzleTile]]?
@@ -50,13 +50,13 @@ struct PuzzleView: View {
         .foregroundStyle(.white)
         .font(.title)
         .onAppear(perform: {
-            if let selectedPhotoItem {
+            if self.selectedPhotoItem != nil {
                 reset()
                 loadingImage = true
                 loadedPuzzle = false
                 
                 do {
-                    let (image, tiles) = try PuzzleLoader().loadPuzzleFromItem(selectedPhotoItem)
+                    let (image, tiles) = try PuzzleLoader().loadPuzzleFromItem(self.selectedPhotoItem)
                     puzzleImage = image
                     orderedTiles = tiles.0
                     shuffledTiles = tiles.1
