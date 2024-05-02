@@ -127,11 +127,12 @@ struct UploadView: View {
         self.showingPickerOption = false
         self.showProgressBar = true
         self.image = Image(uiImage: inputImage)
-        guard let base64 = inputImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
+        let resizedImage = resizeImage(inputImage, targetSize: CGSize(width: 50, height: 50))
+        guard let base64 = resizedImage.pngData()?.base64EncodedString(options: .lineLength64Characters) else { return }
         // dicomment dulu untuk hemat quota api, uncomment ketika release
-        //                fetchGeolocation(base64: base64)
+//        fetchGeolocation(base64: base64)
         // dipakai selama testing menggunakan data dummy, comment ketika release
-        dummyFetchGeolocation(base64: base64)
+                dummyFetchGeolocation(base64: base64)
         self.inputImage = nil
     }
     
@@ -175,6 +176,19 @@ struct UploadView: View {
                 self.navigateToResult = true
             }
         }
+    }
+    
+    func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        let scaleFactor = min(widthRatio, heightRatio)
+        let scaledSize = CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)
+        let renderer = UIGraphicsImageRenderer(size: scaledSize)
+        let scaledImage = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: scaledSize))
+        }
+        return scaledImage
     }
 }
 
